@@ -1,9 +1,4 @@
-# $Id$
-# Maintainer: Stéphane Gaudreault <stephane@archlinux.org>
-# Contributor: Allan McRae <allan@archlinux.org>
-# Contributor: Jason Chu <jason@archlinux.org>
-
-pkgname=python
+pkgname=python32
 pkgver=3.2.3
 pkgrel=1
 _pybasever=3.2
@@ -55,14 +50,8 @@ check() {
 
 package() {
   cd "${srcdir}/Python-${pkgver}"
-  make DESTDIR="${pkgdir}" install maninstall
-
-  # Why are these not done by default...
-  ln -sf python3               "${pkgdir}/usr/bin/python"
-  ln -sf python3-config        "${pkgdir}/usr/bin/python-config"
-  ln -sf idle3                 "${pkgdir}/usr/bin/idle"
-  ln -sf pydoc3                "${pkgdir}/usr/bin/pydoc"
-  ln -sf python${_pybasever}.1 "${pkgdir}/usr/share/man/man1/python3.1"
+  # altinstall: /usr/bin/pythonX.Y but not /usr/bin/python or /usr/bin/pythonX
+  make DESTDIR="${pkgdir}" altinstall maninstall
 
   # Fix FS#22552
   ln -sf ../../libpython${_pybasever}mu.so \
