@@ -41,7 +41,8 @@ build() {
   make
 }
 
-check() {
+# XXX disabled
+check_DISABLED() {
   cd "${srcdir}/Python-${pkgver}"
   LD_LIBRARY_PATH="${srcdir}/Python-${pkgver}":${LD_LIBRARY_PATH} \
      "${srcdir}/Python-${pkgver}/python" -m test.regrtest -x test_distutils test_site \
