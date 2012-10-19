@@ -1,2 +1,4 @@
-*/*
-!*/PKGBUILD
+*/*.tar.xz
+*/*.tar.gz
+*/src
+*/pkg
